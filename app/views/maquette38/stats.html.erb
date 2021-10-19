@@ -1,0 +1,120 @@
+<div style="margin:1%;user-select:none;margin-top:5%;">
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <span id="nav1" class="nav-link active href-light1" href="overview_stats" onclick="nav_active_d('nav1');">Vue d'ensemble</span>
+    </li>
+    <li class="nav-item">
+      <span id="nav2" class="nav-link href-light1" href="interest_stats" onclick="nav_active_d('nav2');">Audience</span>
+    </li>
+    <li class="nav-item">
+      <span id="nav3" class="nav-link href-light1" href="acquisition_stats" onclick="nav_active_d('nav3');">Acquisition</span>
+    </li>
+    <li class="nav-item">
+      <span id="nav4" class="nav-link href-light1" href="activity_stats" onclick="nav_active_d('nav4');">Comportement</span>
+    </li>
+    <li class="nav-item" style="margin-left:4px;">
+      <a class="nav-link href-light1 active" style="background-color:#1F1F1F !important;" href="datas">Culturation <span style="color:#ffc107;">Datas</span></a>
+    </li>
+  </ul>
+</div>
+<div id="content" style="margin:1%">
+
+</div>
+
+<script>
+  document.getElementById('nav_name').innerHTML = '<img src="<%= image_url('c.png') %>" height="30px" />ulturation <span style="color:#007bff">Analytics</span>';
+
+  $("#content").load('overview_stats');
+
+// Dynamisme de la page
+  $(document).ready(function(){
+    $("span.href-light1").click(function(){
+      $("#content").load($(this).attr('href'));
+    });
+    $("button.href-light1").click(function(){
+      $("#content").load($(this).attr('href'));
+    });
+  });
+
+  function nav_active_d(name) {
+  	document.getElementById('nav1').classList.remove('active');
+  	document.getElementById('nav2').classList.remove('active');
+  	document.getElementById('nav3').classList.remove('active');
+  	document.getElementById('nav4').classList.remove('active');
+  	document.getElementById(name).classList.add('active');
+  }
+
+// Les fonctions qui suivent ne sont là qu'à titre de démonstration de la maquette
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+
+  function getRandomIntInclusive(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  var pages_min = 0;
+
+  var test_direct = function() {
+    if (document.getElementById('nusersdirect')) {
+      var date = new Date();
+      var h = date.getHours();
+      if (h < 10) {
+        h = "0" + h
+      }
+      var m = date.getMinutes();
+      if (m < 10) {
+        m = "0" + m
+      }
+      var s = date.getSeconds();
+      if (s < 10) {
+        s = "0" + s
+      }
+      var heure = h + ':' + m + ':' + s;
+      real_pages.data.labels.push(heure);
+      var ran = getRandomIntInclusive(0, 5);
+      real_pages.data.datasets[0].data.push(ran);
+      real_pages.update();
+      real_pages.data.labels.splice(0, 1);
+      real_pages.data.datasets[0].data.splice(0, 1);
+      document.getElementById('nusersdirect').innerHTML = 29 + getRandomIntInclusive(0, 5);
+      var nm = getRandomIntInclusive(0, 10);
+      var nm2 = getRandomIntInclusive(0, 10);
+      real_materials.data.datasets[0].data[0] = 60 + nm - nm2;
+      real_materials.data.datasets[0].data[1] = 30 - nm;
+      real_materials.data.datasets[0].data[2] = 10 + nm2;
+      real_materials.update();
+      pages_min = pages_min + ran;
+      if (date.getSeconds() === 0) {
+        real_pages_min.data.labels.push(heure);
+        real_pages_min.data.datasets[0].data.push(pages_min);
+        real_pages_min.update();
+        pages_min = 0;
+        real_pages_min.data.labels.splice(0, 1);
+        real_pages_min.data.datasets[0].data.splice(0, 1);
+      }
+    }
+  };
+
+  // Fonction permettant d'éviter la répétion de la fonction direct
+  if (!working_stats) {
+    setInterval(test_direct, 1000);
+  }
+  var working_stats = true;
+
+  var a = getRandomColor();
+  var b = getRandomColor();
+  var c = getRandomColor();
+  var d = getRandomColor();
+  var e = getRandomColor();
+  var f = getRandomColor();
+</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.9/datamaps.world.hires.min.js"></script>

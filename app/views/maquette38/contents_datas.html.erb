@@ -1,0 +1,181 @@
+<div style="margin:1%" align="center">
+  <div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+    <div class="card-body">
+      <span id="cdis" class="text-subtitle">...</span>
+      <p class="card-text">contenus disponibles</p>
+    </div>
+  </div>
+  <div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+    <div class="card-body">
+      <span id="cm" class="text-subtitle">...</span>
+      <p class="card-text">en cours de modification</p>
+    </div>
+  </div>
+  <span class="href-light1" href="quarantaines_datas"><div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+  <div class="card-body card-href">
+    <span id="q" class="text-subtitle">...</span>
+  <p class="card-text">en quarantaine</p>
+</div>
+</div>
+</span>
+<div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+  <div class="card-body">
+    <span id="nsearch" class="text-subtitle">...</span>
+    <p class="card-text">recherches</p>
+  </div>
+</div>
+<span class="href-light1" href="quarantaines_datas"><div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+  <div class="card-body card-href">
+    <span id="nsearch" class="text-subtitle">239</span>
+<p class="card-text">en attente d'approbation</p>
+</div>
+</div>
+</span>
+<div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+  <div class="card-body">
+    <span id="cdis" class="text-subtitle">3 568</span>
+    <p class="card-text">articles</p>
+  </div>
+</div>
+<div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+  <div class="card-body">
+    <span id="cm" class="text-subtitle">4 452</span>
+    <p class="card-text">vidéos</p>
+  </div>
+</div>
+<div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+  <div class="card-body">
+    <span id="q" class="text-subtitle">1 864</span>
+    <p class="card-text">podcasts</p>
+  </div>
+</div>
+</div>
+<div>
+  <canvas id="videos" width="100%" height="200px"></canvas>
+</div>
+<div>
+  <canvas id="articles" width="100%" height="200px"></canvas>
+</div>
+<div>
+  <canvas id="podcasts" width="100%" height="200px"></canvas>
+</div>
+<script>
+  // Génération des graphiques
+  var ctx = document.getElementById('videos');
+  var users_months = new Chart(ctx, {
+    type: 'line',
+    data: data = {
+      datasets: [{
+        data: [3, 6, 2, 8, 15, 59, 206, 259, 250, 150, 56, 230, 157, ],
+        backgroundColor: '#FFF'
+      }],
+
+      labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Vidéos vues aujourd\'hui',
+        fontColor: '#fff',
+        fontStyle: 'normal'
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          barPercentage: 1,
+          autoSkip: true
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+  var ctx = document.getElementById('articles');
+  var users_months = new Chart(ctx, {
+    type: 'line',
+    data: data = {
+      datasets: [{
+        data: [3, 0, 2, 8, 15, 59, 106, 159, 250, 10, 56, 130, 57, ],
+        backgroundColor: '#FFF'
+      }],
+
+      labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Articles lus aujourd\'hui',
+        fontColor: '#fff',
+        fontStyle: 'normal'
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          barPercentage: 1,
+          autoSkip: true
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+  var ctx = document.getElementById('podcasts');
+  var users_months = new Chart(ctx, {
+    type: 'line',
+    data: data = {
+      datasets: [{
+        data: [13, 6, 0, 8, 5, 9, 26, 29, 25, 10, 5, 30, 17, ],
+        backgroundColor: '#FFF'
+      }],
+
+      labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Podcasts écoutés aujourd\'hui',
+        fontColor: '#fff',
+        fontStyle: 'normal'
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          barPercentage: 1,
+          autoSkip: true
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+  $(document).ready(function() {
+    $("span.href-light1").click(function() {
+      $("#content").load($(this).attr('href'));
+    });
+    $("button.href-light1").click(function() {
+      $("#content").load($(this).attr('href'));
+    });
+  });
+</script>

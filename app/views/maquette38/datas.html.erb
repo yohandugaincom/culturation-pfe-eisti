@@ -1,0 +1,89 @@
+<style>
+	.nav-link.active {
+	  background-color: #f39c12 !important;}
+</style>
+<div style="margin:1%;user-select:none;margin-top:5%;">
+	<ul class="nav nav-pills nav-fill">
+	  <li class="nav-item">
+		<span id="nav1" class="nav-link href-light1 active" href="overview_datas" onclick="nav_active_d('nav1');">Vue d'ensemble</span>
+	  </li>
+	  <li class="nav-item">
+		<span id="nav2" class="nav-link href-light1" href="users_datas" onclick="nav_active_d('nav2');">Utilisateurs</span>
+	  </li>
+	  <li class="nav-item">
+		<span id="nav3" class="nav-link href-light1" href="contents_datas" onclick="nav_active_d('nav3');">Contenus</span>
+	  </li>
+	  <li class="nav-item">
+		<span id="nav4" class="nav-link href-light1" href="modos_datas" onclick="nav_active_d('nav4');">Modérations</span>
+	  </li>
+	  <li class="nav-item" style="margin-left:4px;">
+		<a id="nav5" class="nav-link href-light1 active" style="background-color:#1F1F1F !important;" href="stats">Culturation <span style="color:#007bff;">Analytics</span></a>
+	  </li>
+	</ul>
+</div>
+<div id="content" style="margin:1%">
+
+</div>
+<script>
+
+	document.getElementById('nav_name').innerHTML = '<img src="<%= image_url('c.png') %>" height="30px" />ulturation <span style="color:#ffc107">Datas</span>';
+
+	$("#content").load('overview_datas');
+
+	// Dynamisme de la page
+	  $(document).ready(function(){
+	    $("span.href-light1").click(function(){
+	      $("#content").load($(this).attr('href'));
+	    });
+	    $("button.href-light1").click(function(){
+	      $("#content").load($(this).attr('href'));
+	    });
+	  });
+
+	  function nav_active_d(name) {
+	  	document.getElementById('nav1').classList.remove('active');
+	  	document.getElementById('nav2').classList.remove('active');
+	  	document.getElementById('nav3').classList.remove('active');
+	  	document.getElementById('nav4').classList.remove('active');
+	  	document.getElementById(name).classList.add('active');
+	  }
+
+// Les fonctions qui suivent ne sont là qu'à titre de démonstration de la maquette
+	function getRandomIntInclusive(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+	var nsearchc = 11207;
+	var cdis = 9884;
+	var cm = 542;
+	var q = 25;
+	var s = cm*2;
+
+	function test_direct() {
+		nsearchc = nsearchc + getRandomIntInclusive(0, 1);
+		cm = cm +getRandomIntInclusive(-5, 5);
+		if (document.getElementById('nsearch')!==null) {
+			document.getElementById('nsearch').innerHTML = new Intl.NumberFormat('fr-FR').format(nsearchc);
+		}
+		if (document.getElementById('cdis')!==null) {
+			document.getElementById('cdis').innerHTML = new Intl.NumberFormat('fr-FR').format(cdis);
+		}
+		if (document.getElementById('cm')!==null) {
+			document.getElementById('cm').innerHTML = new Intl.NumberFormat('fr-FR').format(cm);
+		}
+		if (document.getElementById('q')!==null) {
+			document.getElementById('q').innerHTML = new Intl.NumberFormat('fr-FR').format(q);
+		}
+		if (document.getElementById('nsign')!==null) {
+			if (s<cm*2) {
+				s = cm*2;
+			}
+			document.getElementById('nsign').innerHTML = new Intl.NumberFormat('fr-FR').format(s);
+		}
+	}
+
+	// Fonction permettant d'éviter la répétion de la fonction direct
+  if (!working_datas) {
+    setInterval(test_direct, 2000);
+  }
+  var working_datas = true;
+</script>

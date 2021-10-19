@@ -1,0 +1,46 @@
+<!-- Les fonctions "direct..." servent à vérifier la cohérence des informations avec ce qui est demandé
+pour éviter de lancer une exécution serveur inutilement -->
+<div class="box background-light1" style="margin-top:8%;" align="left">
+  <div><span class="text-heading">S'enregistrer</span></br>
+    <span class="text-default">Inscrivez-vous pour bénéficier de fonctionnalités avancées</span></br>
+  </div>
+  <form class="inputid">
+    </br>
+    <label>Identifiants de connexion</label>
+    <div class="form-row">
+      <div class="col">
+        <input onKeyUp="direct();direct_mail();" type="text" class="form-control" placeholder="Adresse e-mail" id="mail">
+      </div>
+      <div class="col">
+        <input onKeyUp="direct();direct_id();" type="text" class="form-control" placeholder="Identifiant" id="id">
+        <small class="form-text text-muted">Votre identifiant sera visible par tous les utilisateurs.</small>
+        <div class="invalid-feedback">
+          Identifiant non disponible.
+        </div>
+      </div>
+    </div>
+    </br>
+    <div class="form-group">
+      <input onKeyUp="direct();direct_psw();" type="password" class="form-control" id="psw1" placeholder="Mot de passe">
+      <div class="invalid-feedback">
+        Votre mot de passe doit contenir au moins 6 caractères, dont au moins un chiffre et une lettre.
+      </div>
+    </div>
+    <div class="form-group">
+      <input onKeyUp="direct();direct_apsw();" type="password" class="form-control" id="psw2" placeholder="Saisissez de nouveau votre mot de passe">
+      <div class="invalid-feedback">
+        Les mots de passe ne correspondent pas.
+      </div>
+    </div>
+    <div class="form-group form-check sub" align="right">
+      <input onclick="direct();" type="checkbox" class="form-check-input" id="check">
+      <label class="form-check-label" for="eCheck1">J'accepte les conditions d'utilisations et la charte de confidentialité de Culturation.</label>
+      </br>
+      </br>
+      <button id="continue" type="submit" class="btn btn-primary" disabled>Valider mes informations</button>
+    </div>
+  </form>
+</div>
+<script>
+  document.getElementById('nav_connect').classList.add('active');
+</script>

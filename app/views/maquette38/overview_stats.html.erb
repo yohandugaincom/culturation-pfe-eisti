@@ -1,0 +1,121 @@
+<div style="width:30%;display:inline-block;float:left;margin-top:1%;" align="center">
+  <p class="text-heading">Temps réel</p>
+  <p class="text-title" style="margin-top:-20px;" id="nusersdirect">31</p>
+  <p class="text-subheading" style="margin-top:-30px;">utilisateurs actifs</p>
+  </br>
+  <p class="text-heading" style="margin-top:1%;">Appareils utilisés</p>
+  <canvas id="real_users" width="300px" height="300px"></canvas>
+</div>
+
+
+<div style="width:65%;display:inline-block;float:right;margin-left:5%;margin-top:1%;" align="center">
+  <p class="text-heading">Activité en temps réel</p>
+  <canvas id="real_pages" width="600px" height="300px"></canvas>
+  <canvas id="real_minutes" width="600px" height="300px"></canvas>
+</div>
+
+<script>
+  // Génération des graphiques
+  var ctx = document.getElementById('real_users');
+  var real_materials = new Chart(ctx, {
+    type: 'pie',
+    data: data = {
+      datasets: [{
+        data: [60, 30, 10],
+        backgroundColor: ["#007bff", "#e74c3c", "#2ecc71"]
+      }],
+
+      labels: [
+        'Ordinateur',
+        'Mobile',
+        'Tablette'
+      ]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: true,
+      legend: {
+        position: 'bottom'
+      }
+    }
+  });
+
+  var ctx = document.getElementById('real_pages');
+  var real_pages = new Chart(ctx, {
+    type: 'bar',
+    data: data = {
+      datasets: [{
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        backgroundColor: '#FFF',
+        hoverBackgroundColor: '#FFF'
+      }],
+
+      labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+    },
+    options: {
+      tooltips: {
+        enabled: false
+      },
+      title: {
+        display: true,
+        text: 'Pages vues par seconde',
+        fontColor: '#fff',
+        fontStyle: 'normal'
+      },
+      responsive: false,
+      maintainAspectRatio: true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          barPercentage: 1,
+          autoSkip: true
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            stepSize: 1
+          }
+        }]
+      }
+    }
+  });
+
+  var ctx = document.getElementById('real_minutes');
+  var real_pages_min = new Chart(ctx, {
+    type: 'bar',
+    data: data = {
+      datasets: [{
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        backgroundColor: '#FFF'
+      }],
+
+      labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Pages vues par minute',
+        fontColor: '#fff',
+        fontStyle: 'normal'
+      },
+      responsive: false,
+      maintainAspectRatio: true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          barPercentage: 1,
+          autoSkip: true
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+</script>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="icon" type="image/png" href="<%= image_url('c.png') %>" />
+  <title>Culturation</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <% if File.file?('app/assets/stylesheets/'.concat(controller_name).concat('.scss')) %>
+      <%= stylesheet_link_tag "application", controller_name %>
+        <% end %>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+          <% if File.file?('app/assets/javascripts/'.concat(controller_name).concat('.js')) %>
+            <%= javascript_include_tag params[:controller] %>
+              <% end %>
+                <%= csrf_meta_tags %>
+                  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                  <script type="text/javascript" src="<%= asset_url('application.js', type: :javascript) %>"></script>
+</head>
+
+<body>
+  <div id="menu">
+    <nav class="navbar navbar-expand-lg navbar-dark menuH">
+      <a id="nav_name" class="navbar-brand" style="font-family:OpenSansBold;" href="/"><img src="<%= image_url('c.png') %>" height="30px" />ulturation</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a id="nav_search" class="nav-link" href="/maquette2/search"><span class="fas fa-search"></span> Rechercher</a>
+          </li>
+          <li class="nav-item">
+            <a id="nav_arbre" class="nav-link" href="#"><span class="fas fa-code-branch"></span> Arbre<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <span id="nav_connect" class="nav-link dropdown-toggle" id="navbarDropdown" style="cursor:pointer;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fas fa-user"></span> Non connecté
+            </span>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/maquette4/connect" data-toggle="modal" data-target="#signin_form">Se connecter</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/maquette4/signup" data-toggle="modal" data-target="#signup_form">S'enregistrer</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div id="container" style="margin-top:56px;">
+    <%= yield %>
+  </div>
+
+  <!-- Connexion -->
+  <div class="modal fade" id="signin_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="color:black;">
+      <div class="modal-content" style="border-style:none;">
+        <div class="modal-body" align="center">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <span><img src="<%= image_url('id.png') %>" style="width:30%;max-width:30%;min-width:100px;" /></span></br>
+          <span class="text-heading">Se connecter</span></br>
+          <span class="text-default">Connectez-vous avec votre compte Culturation</span></br>
+          </br>
+          <form class="inputid">
+            <div class="form-group ">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse e-mail ou identifiant">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+            </div>
+            <div align="right">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Se souvenir de moi</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary">Identifiants oubliés ?</button>
+          <button type="submit" class="btn btn-primary">Se connecter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inscription -->
+  <div class="modal fade" id="signup_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="color:black;">
+      <div class="modal-content" style="border-style:none;">
+        <div class="modal-body" align="left">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div><span class="text-heading">S'enregistrer</span></br>
+            <span class="text-default">Inscrivez-vous pour bénéficier de fonctionnalités avancées</span></br>
+          </div>
+          <form class="inputid">
+            </br>
+            <label>Identifiants de connexion</label>
+            <div class="form-row">
+              <div class="col">
+                <input onKeyUp="direct();direct_mail();" type="text" class="form-control" placeholder="Adresse e-mail" id="mail">
+              </div>
+              <div class="col">
+                <input onKeyUp="direct();direct_id();" type="text" class="form-control" placeholder="Identifiant" id="id">
+                <small class="form-text text-muted">Votre identifiant sera visible par tous les utilisateurs.</small>
+                <div class="invalid-feedback">
+                  Identifiant non disponible.
+                </div>
+              </div>
+            </div>
+            </br>
+            <div class="form-group">
+              <input onKeyUp="direct();direct_psw();" type="password" class="form-control" id="psw1" placeholder="Mot de passe">
+              <div class="invalid-feedback">
+                Votre mot de passe doit contenir au moins 6 caractères, dont au moins un chiffre et une lettre.
+              </div>
+            </div>
+            <div class="form-group">
+              <input onKeyUp="direct();direct_apsw();" type="password" class="form-control" id="psw2" placeholder="Saisissez de nouveau votre mot de passe">
+              <div class="invalid-feedback">
+                Les mots de passe ne correspondent pas.
+              </div>
+            </div>
+          </form>
+          <div align="right">
+            <input onclick="direct();" type="checkbox" class="form-check-input" id="check">
+            <label class="form-check-label" for="eCheck1">J'accepte les C.G.U. et la charte de confidentialité de Culturation.</label>
+            </br>
+            </br>
+          </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="continue" type="submit" class="btn btn-primary" disabled>Valider mes informations</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+</html>

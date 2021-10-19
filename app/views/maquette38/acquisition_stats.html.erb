@@ -1,0 +1,232 @@
+<div style="margin:1%;">
+  <p class="text-heading">Provenance des utilisateurs</p>
+</div>
+<div align="center">
+  <!-- Ici la carte de provenance des utilisateurs -->
+  <div id="map" style="position: relative; width: 800px; height: 350px;color:black;"></div>
+  </br>
+  <!-- Tableau de provenance -->
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Zone</th>
+        <th scope="col">Pourcentage</th>
+        <th scope="col">Utilisateurs</th>
+        <th scope="col">Sessions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Amérique du Nord</th>
+        <td>24,83</td>
+        <td>287</td>
+        <td>516</td>
+      </tr>
+      <tr>
+        <th scope="row">Amérique du Sud</th>
+        <td>13,32</td>
+        <td>154</td>
+        <td>277</td>
+      </tr>
+      <tr>
+        <th scope="row">Europe</th>
+        <td>46,89</td>
+        <td>542</td>
+        <td>975</td>
+      </tr>
+      <tr>
+        <th scope="row">Afrique</th>
+        <td>4,07</td>
+        <td>47</td>
+        <td>84</td>
+      </tr>
+      <tr>
+        <th scope="row">Asie</th>
+        <td>8,74</td>
+        <td>101</td>
+        <td>181</td>
+      </tr>
+      <tr>
+        <th scope="row">Océanie</th>
+        <td>2,16</td>
+        <td>25</td>
+        <td>45</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div style="margin:1%;">
+  <p class="text-heading">Principaux canaux</p>
+</div>
+<div style="width:50%;display: inline-block;float:left;">
+  <div>
+    <canvas id="acquisition" width="100%" height="300px"></canvas>
+  </div>
+</div>
+<div style="width:50%;display: inline-block;float:right;">
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Canal</th>
+        <th scope="col">Pourcentage</th>
+        <th scope="col">Utilisateurs</th>
+        <th scope="col">Sessions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Google</th>
+        <td>45</td>
+        <td>527</td>
+        <td>984</td>
+      </tr>
+      <tr>
+        <th scope="row">DuckDuckGo</th>
+        <td>25</td>
+        <td>341</td>
+        <td>597</td>
+      </tr>
+      <tr>
+        <th scope="row">Twitter</th>
+        <td>8</td>
+        <td>93</td>
+        <td>154</td>
+      </tr>
+      <tr>
+        <th scope="row">Lien direct</th>
+        <td>7</td>
+        <td>82</td>
+        <td>116</td>
+      </tr>
+      <tr>
+        <th scope="row">Facebook</th>
+        <td>4</td>
+        <td>39</td>
+        <td>61</td>
+      </tr>
+      <tr>
+        <th scope="row">Autres</th>
+        <td>1</td>
+        <td>8</td>
+        <td>14</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<script>
+// Génération de la map
+  var map = new Datamap({
+    element: document.getElementById('map'),
+    responsive: false,
+    geographyConfig: {
+      borderColor: '#2d3436',
+      highlightFillColor: '#FFF',
+      popupOnHover: false,
+      highlightOnHover: false
+    },
+    fills: {
+      defaultFill: "#ffffff",
+      EU: '#007bff',
+      AN: '#007bff',
+      AS: '#007bff',
+      AF: '#007bff',
+      OC: '#007bff'
+    }
+  });
+
+// Affichage des bulles sur la map
+  map.bubbles([{
+    name: 'Europe',
+    radius: Math.floor(542 / 1156 * 100 + 10),
+    users: 542,
+    a_users: 379,
+    country: 'EU',
+    fillKey: 'EU',
+    date: '1954-03-01',
+    latitude: 49.771652,
+    longitude: 9.021241
+  }, {
+    name: 'Amérique du Nord',
+    radius: Math.floor(307 / 1156 * 100 + 10),
+    users: 287,
+    a_users: 215,
+    country: 'EU',
+    fillKey: 'AN',
+    date: '1954-03-01',
+    latitude: 41.685464,
+    longitude: -97.107781
+  }, {
+    name: 'Amérique du Sud',
+    radius: Math.floor(154 / 1156 * 100 + 10),
+    users: 154,
+    a_users: 86,
+    country: 'EU',
+    fillKey: 'AS',
+    date: '1954-03-01',
+    latitude: -11.371048,
+    longitude: -57.495053
+  }, {
+    name: 'Afrique',
+    radius: Math.floor(47 / 1156 * 100 + 10),
+    users: 47,
+    a_users: 28,
+    country: 'EU',
+    fillKey: 'AF',
+    date: '1954-03-01',
+    latitude: 7.140291,
+    longitude: 21.119898
+  }, {
+    name: 'Asie',
+    radius: Math.floor(101 / 1156 * 100 + 10),
+    users: 101,
+    a_users: 67,
+    country: 'EU',
+    fillKey: 'AS',
+    date: '1954-03-01',
+    latitude: 42.066862,
+    longitude: 88.902734
+  }, {
+    name: 'Océanie',
+    radius: Math.floor(25 / 1156 * 100 + 10),
+    users: 25,
+    a_users: 7,
+    country: 'EU',
+    fillKey: 'OC',
+    date: '1954-03-01',
+    latitude: -18.919864,
+    longitude: 135.511739
+  }], {
+    popupTemplate: function(geo, data) {
+      return '<div class="hoverinfo"><b>' + data.name + '</b></br>' + data.users + ' utilisateurs dont <b>' + data.a_users + '</b> actifs.</div>';
+    }
+  });
+
+
+// Génération du graphique camembert
+  var ctx = document.getElementById('acquisition');
+  var acquisition = new Chart(ctx, {
+    type: 'pie',
+    data: data = {
+      datasets: [{
+        data: [45, 25, 8, 7, 5, 1],
+        backgroundColor: [a, b, c, d, e, f]
+      }],
+
+      labels: [
+        'Google',
+        'DuckDuckGo',
+        'Twitter',
+        'Lien direct',
+        'Facebook',
+        'Autres'
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {
+        position: 'bottom'
+      }
+    }
+  });
+</script>

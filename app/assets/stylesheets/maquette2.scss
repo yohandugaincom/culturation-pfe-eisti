@@ -1,0 +1,42 @@
+#videos {
+  display:block;
+}
+#articles {
+  display:block;
+}
+#podcasts {
+  display:block;
+}
+#pleaseselect {
+  display:none;
+}
+
+#recents {
+  float:left;
+  width:35%;
+  display:inline-block;
+  margin-top:2%;
+}
+#tendances {
+  float:right;
+  width:55%;
+  display:inline-block;
+  margin-top:2%;
+}
+#suggs {
+  display:inline-block;
+  margin-top:2%;
+  width:100%;
+}
+#rec-ten span {
+  display:block;
+  padding: 5px;
+  cursor: pointer;
+  color:#0984e3;
+}
+#rec-ten span:hover {
+  color:#74b9ff;
+}
+body {
+  transition:background-color 0.5s ease;
+}

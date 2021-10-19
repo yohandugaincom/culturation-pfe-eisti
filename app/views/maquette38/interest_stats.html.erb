@@ -1,0 +1,149 @@
+<div style="margin:1%" align="center">
+  <div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+    <div class="card-body">
+      <span class="text-subtitle">1 156</span>
+      <p class="card-text">utilisateurs</p>
+    </div>
+  </div>
+  <div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+    <div class="card-body">
+      <span class="text-subtitle">2 019</span>
+      <p class="card-text">sessions</p>
+    </div>
+  </div>
+  <div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+    <div class="card-body">
+      <span class="text-subtitle">7 603</span>
+      <p class="card-text">pages vues</p>
+    </div>
+  </div>
+  <div class="card background-light1" style="width: 22%;display:inline-block;margin:1%;" align="center">
+    <div class="card-body">
+      <span class="text-subtitle">7,67</span>
+      <p class="card-text">pages par session</p>
+    </div>
+  </div>
+</div>
+<div>
+  <canvas id="users" width="100%" height="300px"></canvas>
+</div>
+<div>
+  <canvas id="users_months" width="100%" height="200px"></canvas>
+</div>
+<div>
+  <canvas id="users_years" width="100%" height="200px"></canvas>
+</div>
+<script>
+  // Génération des graphiques
+  var ctx = document.getElementById('users');
+  var users = new Chart(ctx, {
+    type: 'line',
+    data: data = {
+      datasets: [{
+        data: [401, 530, 667, 675, 789, 793, 820, 927, 1030, 1156],
+        backgroundColor: '#007bff',
+        pointBackgroundColor: '#ecf0f1'
+      }],
+
+      labels: ['S-10', 'S-9', 'S-8', 'S-7', 'S-6', 'S-5', 'S-4', 'S-3', 'S-2', 'S-1', 'Cette semaine']
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Nombres d\'utilisateurs sur les 10 dernières semaines',
+        fontColor: '#fff',
+        fontStyle: 'normal'
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          barPercentage: 1,
+          autoSkip: true
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+  var ctx = document.getElementById('users_months');
+  var users_months = new Chart(ctx, {
+    type: 'line',
+    data: data = {
+      datasets: [{
+        data: [13, 50, 43, ],
+        backgroundColor: '#FFF'
+      }],
+
+      labels: ['Semaine 1', 'Semaine 2', 'Semaine 3', 'Semaine 4']
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Nouveaux utilisateurs ce mois-ci',
+        fontColor: '#fff',
+        fontStyle: 'normal'
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          barPercentage: 1,
+          autoSkip: true
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+  var ctxa = document.getElementById('users_years');
+  var users_years = new Chart(ctxa, {
+    type: 'line',
+    data: data = {
+      datasets: [{
+        data: [154, 207, 189, 216, 100],
+        backgroundColor: '#FFF'
+      }],
+
+      labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Nouveaux utilisateurs cette année',
+        fontColor: '#fff',
+        fontStyle: 'normal'
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          barPercentage: 1,
+          autoSkip: true
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+</script>

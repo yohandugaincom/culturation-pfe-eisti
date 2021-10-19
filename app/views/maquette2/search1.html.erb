@@ -1,0 +1,388 @@
+<!-- Maquette 2 - Page de recherche -->
+<!-- Formulaire de recherche -->
+<div id="search" style="width:50%;margin-top:5%;margin-left:2%;">
+  <!-- Entrée termes de recherche -->
+  <div class="input-group">
+    <input id="search_input" onkeyup="search();" onfocus="foc();" onblur="blu();" type="text" class="form-control" placeholder="Que souhaitez-vous rechercher ?" style="z-index:auto !important;">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary dropdown-toggle color-light1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="set-time" style="z-index:auto !important;">Recommandé</button>
+      <div class="dropdown-menu">
+        <!-- Sélection du temps -->
+        <span class="dropdown-item" style="cursor:pointer;" onclick="time('5');">≤ 5 minutes</span>
+        <span class="dropdown-item" style="cursor:pointer;" onclick="time('15');">≤ 15 minutes</span>
+        <span class="dropdown-item" style="cursor:pointer;" onclick="time('30');">≤ 30 minutes</span>
+        <span class="dropdown-item" style="cursor:pointer;" onclick="time('60');">≤ 60 minutes</span>
+        <span class="dropdown-item" style="cursor:pointer;" onclick="time('all');">∞ Désactiver</span>
+        <div role="separator" class="dropdown-divider"></div>
+        <span class="dropdown-item" style="cursor:pointer;" onclick="time('default');">Recommandé (défaut)</span>
+      </div>
+    </div>
+  </div>
+  <!-- Sélection type de contenus -->
+  <div style="display:flex;margin-top:1%;user-select:none;">
+    <div class="custom-control custom-switch">
+      <input onclick="settype('videos');" type="checkbox" class="custom-control-input" id="s1" checked>
+      <label class="custom-control-label" for="s1">Vidéos</label>
+    </div>
+    <div class="vl-light" style="margin-left:3%;height:25px;"></div>
+    <div class="custom-control custom-switch" style="margin-left:3%;">
+      <input onclick="settype('articles');" type="checkbox" class="custom-control-input" checked id="s2">
+      <label class="custom-control-label" for="s2">Articles</label>
+    </div>
+    <div class="vl-light" style="margin-left:3%;height:25px;"></div>
+    <div class="custom-control custom-switch" style="margin-left:3%;">
+      <input onclick="settype('podcasts');" type="checkbox" class="custom-control-input" checked id="s3">
+      <label class="custom-control-label" for="s3">Podcasts</label>
+    </div>
+  </div>
+</div>
+<!-- Cette section n'apparaît que lorsqu'il n'y a aucun terme de recherche
+   ou lorsque l'utilisateur clique dans le formulaire de recherche.
+   Elle disparaît automatiquement quand l'utilisateur clique en dehors du formulaire de recherche. -->
+<div id="rec-ten" style="margin-top:1%;margin-left:2%;">
+  <!-- Les recherches récentes de l'utilisateur -->
+  <div id="recents">
+    <p class="text-heading">Recherches récentes</p>
+    <div style="margin-top:1%;margin-left:5%;" class="text-subheading">
+      <span onclick="autocomplete('Exemple d\'une recherche récente #1');">Exemple d'une recherche récente #1</span>
+      <span onclick="autocomplete('Exemple d\'une recherche récente #2');">Exemple d'une recherche récente #2</span>
+      <span onclick="autocomplete('Exemple d\'une recherche récente #3');">Exemple d'une recherche récente #3</span>
+      <span onclick="autocomplete('Exemple d\'une recherche récente #4');">Exemple d'une recherche récente #4</span>
+      <span onclick="autocomplete('Exemple d\'une recherche récente #5');">Exemple d'une recherche récente #5</span>
+    </div>
+  </div>
+  <!-- Les plus recherchés aujourd'hui sur Culturation -->
+  <div id="tendances">
+    <p class="text-heading">Tendances</p>
+    <div style="margin-top:1%;margin-left:5%;" class="text-subheading">
+      <span onclick="autocomplete('Exemple d\'une recherche tendance #1');">Exemple d'une recherche tendance #1</span>
+      <span onclick="autocomplete('Exemple d\'une recherche tendance #2');">Exemple d'une recherche tendance #2</span>
+      <span onclick="autocomplete('Exemple d\'une recherche tendance #3');">Exemple d'une recherche tendance #3</span>
+      <span onclick="autocomplete('Exemple d\'une recherche tendance #4');">Exemple d'une recherche tendance #4</span>
+      <span onclick="autocomplete('Exemple d\'une recherche tendance #5');">Exemple d'une recherche tendance #5</span>
+    </div>
+  </div>
+  <!-- Suggérer des contenus à l'utilisateur -->
+  <div id="suggs">
+    <p class="text-subtitle text-heading">Suggestions personnalisées</p>
+    <div style="margin-top:-30px;margin-left:1%;margin-bottom:1%;overflow-x: auto;margin-right:1%;">
+      <div class="container-fluid color-dark1">
+        <div id="sug-content" class="row flex-row flex-nowrap" style="margin-top:10px;margin-bottom:1%;margin-left:1%;">
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:15rem;width: 15rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Sauvegarder</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:15rem;width: 15rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Sauvegarder</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:15rem;width: 15rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Sauvegarder</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:15rem;width: 15rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Sauvegarder</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:15rem;width: 15rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Sauvegarder</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:15rem;width: 15rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Sauvegarder</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:15rem;width: 15rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Sauvegarder</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Affichage des résultats correspondant à la recherche -->
+<div id="results" style="margin-left:2%;margin-top:2%;margin-bottom:5%;display:none;">
+  <!-- Les résultats de recherche qui correspondent aux vidéos -->
+  <div id="videos">
+    <p class="text-heading">Vidéos</p>
+    <div style="margin-left:1%;margin-bottom:1%;overflow-x: auto;margin-right:1%;">
+      <div class="container-fluid color-dark1">
+        <div id="subvids" class="row flex-row flex-nowrap" style="margin-top:10px;margin-bottom:1%;margin-left:1%;">
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:18rem;width: 18rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Modifiée il y a .... jours</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Ajouter à ma liste</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:18rem;width: 18rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Modifiée il y a .... jours</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Ajouter à ma liste</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:18rem;width: 18rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Modifiée il y a .... jours</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Ajouter à ma liste</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:18rem;width: 18rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Modifiée il y a .... jours</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Ajouter à ma liste</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:18rem;width: 18rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Modifiée il y a .... jours</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Ajouter à ma liste</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:18rem;width: 18rem;">
+            <img src="<%= image_url('sv_default.jpg') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Modifiée il y a .... jours</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Consulter</a>
+              <a href="#" class="card-link">Ajouter à ma liste</a>
+            </div>
+          </div>
+          <div class="card" style="display:inline-block;margin-top:1%;margin-right:1%;min-width:18rem;width: 18rem;vertical-align: 30px;">
+            <img src="<%= image_url('next-page.png') %>" class="card-img-top" alt="Miniature">
+            <div class="card-body" align="center">
+              <a href="#" class="btn btn-primary">Voir plus de vidéos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Les résultats de recherche qui correspondent aux articles -->
+  <div id="articles">
+    <p class="text-heading">Articles</p>
+    <div style="margin-left:1%;margin-right:1%;margin-bottom:1%;">
+      <div class="color-dark1">
+        <div class="row">
+          <div class="col-sm-6 hcol">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Modifié il y a ... jours</small></p>
+                <a href="#" class="btn btn-primary">Consulter</a>
+                <a href="#" class="btn btn-secondary">Ajouter à ma liste</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6" style="margin-bottom:1%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Modifié il y a ... jours</small></p>
+                <a href="#" class="btn btn-primary">Consulter</a>
+                <a href="#" class="btn btn-secondary">Ajouter à ma liste</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6" style="margin-bottom:1%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Modifié il y a ... jours</small></p>
+                <a href="#" class="btn btn-primary">Consulter</a>
+                <a href="#" class="btn btn-secondary">Ajouter à ma liste</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6" style="margin-bottom:1%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Modifié il y a ... jours</small></p>
+                <a href="#" class="btn btn-primary">Consulter</a>
+                <a href="#" class="btn btn-secondary">Ajouter à ma liste</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6" style="margin-bottom:1%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Modifié il y a ... jours</small></p>
+                <a href="#" class="btn btn-primary">Consulter</a>
+                <a href="#" class="btn btn-secondary">Ajouter à ma liste</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6" style="margin-bottom:1%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Modifié il y a ... jours</small></p>
+                <a href="#" class="btn btn-primary">Consulter</a>
+                <a href="#" class="btn btn-secondary">Ajouter à ma liste</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6" style="margin-bottom:1%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Modifié il y a ... jours</small></p>
+                <a href="#" class="btn btn-primary">Consulter</a>
+                <a href="#" class="btn btn-secondary">Ajouter à ma liste</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6" style="margin-bottom:1%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Modifié il y a ... jours</small></p>
+                <a href="#" class="btn btn-primary">Consulter</a>
+                <a href="#" class="btn btn-secondary">Ajouter à ma liste</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6" style="margin-bottom:1%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Modifié il y a ... jours</small></p>
+                <a href="#" class="btn btn-primary">Consulter</a>
+                <a href="#" class="btn btn-secondary">Ajouter à ma liste</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6" style="margin-bottom:1%;">
+            <div class="card">
+              <div class="card-body" align="center">
+                <img src="<%= image_url('next-page-h.png') %>" width="38%"></br>
+                <a href="#" class="btn btn-primary" style="margin-top:5%;">Voir plus d'articles</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Les résultats de recherche qui correspondent aux podcasts -->
+  <div id="podcasts">
+    <p class="text-heading">Podcasts</p>
+    <div style="margin-left:1%;">
+      <span class="text-default" style="margin-top:3%;">Aucun contenu de ce genre ne corresponds à votre recherche.</span></br>
+      <span class="text-default href-light1">Cliquez ici pour référencer de nouveaux podcasts.</span>
+    </div>
+  </div>
+  <div id="pleaseselect" align="center">
+    <p class="text-heading">Veuillez sélectioner au moins un type de contenu.</p>
+  </div>
+</div>
+<script>
+  search();
+  document.getElementById('search_input').focus();
+  document.getElementById('nav_search').classList.add('active');
+</script>

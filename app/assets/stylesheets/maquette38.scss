@@ -1,0 +1,11 @@
+body {
+  overflow-y: scroll;
+}
+.card-href {
+  background-color: white;
+  transition: background-color 0.5s ease;
+}
+.card-href:hover {
+  background-color: #f39c12;
+  transition: background-color 0.5s ease;
+}

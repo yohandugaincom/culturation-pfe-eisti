@@ -1,0 +1,25 @@
+<div class="box background-light1" style="margin-top:8%;" align="center">
+  <div style="height:150px;"><img src="<%= image_url('profile_default.png') %>" style="border-radius:50%;position:absolute;z-index:1;left:0;right:0;margin:0 auto;width:150px;max-width:150px;min-width:100px;" height="150px" width="150px" alt="Avatar">
+    <img src="<%= image_url('warning.png') %>" style="position:absolute;z-index:2;margin-top:75px;" height="75px" width="75px" alt="Avatar"></div>
+  </br>
+  <span class="text-heading">[user_id]</span></br>
+  <form style="margin-top:3%;">
+    <select class="form-control form-control-lg">
+      <option value="0">Sélectionnez un motif de signalement</option>
+      <option value="1">Violence</option>
+      <option value="2">Incitation à la haine</option>
+      <option value="3">Fausse information</option>
+      <option value="4">Contenu indésirable</option>
+      <option value="5">Publicité</option>
+      <option value="6">Autre</option>
+    </select>
+    </br>
+    <label for="more" style="float:left;">Plus d'informations : <span class="color-dark2"><i>(optionnel)</i></span></label>
+    <textarea class="form-control" id="more" rows="2"></textarea>
+    </br>
+    <div align="right">
+      <button type="button" class="btn btn-secondary">Annuler</button>
+      <button type="button" class="btn btn-warning">Signaler cet utilisateur</button>
+    </div>
+  </form>
+</div>

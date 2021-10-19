@@ -1,0 +1,50 @@
+<div align="center" class="bloc-gauche text-default background-dark1">
+  <div style="margin-top:25%;">
+    <!-- Avatar de l'utilisateur -->
+    <img src="<%= image_url('profile_default.png') %>" style="border-radius:50%;" height="150px" width="150px" alt="Avatar">
+    <!-- Identifiant de l'utilisateur -->
+    <p class="text-heading" style="font-size:40px;">[user_id]</p>
+  </div>
+  <div class="sbadge">
+    <!-- Image de badge de l'utilisateur -->
+    <img src="<%= image_url('test_badge.png') %>" height="30px" width="30px" alt="Badge" style="margin-right:1%;" /><span class="badge badge-secondary text-subheading">Top contributeur</span>
+    <div class="progress" style="height:10px;width:50%;margin:2%;">
+      <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <!-- Date d'inscription de l'utilisateur -->
+    <p style="margin-top:1%;">Membre depuis [mois] [AAAA]</p>
+  </div>
+  <div style="margin-top:30%;">
+    <button type="button" class="btn btn-secondary" style="margin:1%;">Mes contributions</button>
+    </br>
+    <!-- Déconnexion de l'utilisateur -->
+    <button type="button" class="btn btn-danger" style="margin:1%;">Se déconnecter</button>
+  </div>
+</div>
+
+<!-- Menu supérieur -->
+<div class="bloc-droit background-dark1" style="height:10%;">
+  <div style="margin:1%; margin-left:4%;">
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item">
+        <span id="history" class="nav-link active href-light1" href="overview.html" onclick="nav_active('history');">Mon historique</span>
+      </li>
+      <li class="nav-item">
+        <span id="sv" class="nav-link href-light1" href="interest.html" onclick="nav_active('sv');">Mes vidéos sauvegardées</span>
+      </li>
+      <li class="nav-item">
+        <span id="preferences" class="nav-link href-light1" href="acquisition.html" onclick="nav_active('preferences');">Mes préférences</span>
+      </li>
+      <li class="nav-item">
+        <span id="settings" class="nav-link href-light1" href="activity.html" onclick="nav_active('settings');">Paramètres</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Ici le content -->
+<div class="bloc-droit background-dark1" style="height:92%;margin-top:5%;">
+  <div id="content" style="margin-left:4%;margin-right:1%;margin-bottom:56px;">
+    <span class="text-subtitle">Mon fil d'activités</span>
+  </div>
+</div>
